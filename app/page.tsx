@@ -146,14 +146,6 @@ export default function HomePage() {
                   <h3 className="font-heading text-2xl font-bold text-ink">
                     {service.title}
                   </h3>
-                  <p className="mt-1 text-sm font-semibold text-sage-dark">
-                    {service.price}
-                    {service.priceNote && (
-                      <span className="ml-2 text-bark">
-                        · {service.priceNote}
-                      </span>
-                    )}
-                  </p>
                   <p className="mt-3 flex-1 text-ink/80">{service.blurb}</p>
                   {service.detail && (
                     <Link
