@@ -9,7 +9,7 @@ export const SITE_DESCRIPTION =
   'Dog boarding, grooming, and playtime in Dunlap, Tennessee. Serving the Sequatchie Valley and surrounding areas. Run by lifelong dog person Tess Boring.';
 
 export const ADDRESS = {
-  streetAddress: '1315 River Ridge Rd',
+  streetAddress: '1315 River Ridge Dr',
   addressLocality: 'Dunlap',
   addressRegion: 'TN',
   postalCode: '37327',
