@@ -9,12 +9,12 @@ const service = serviceBySlug('boarding')!;
 export const metadata: Metadata = {
   title: 'Dog Boarding in Dunlap, TN',
   description:
-    'Dog boarding at River Ridge Pet Retreat — indoor/outdoor kennel runs, attentive care, and reduced rates for dogs from the same household sharing a run.',
+    'Dog boarding at River Ridge Pet Retreat: indoor/outdoor kennel runs, attentive care, and room for dogs from the same household to share a run.',
   alternates: { canonical: '/services/boarding/' },
   openGraph: {
     title: 'Dog Boarding',
     description:
-      'Dog boarding at River Ridge Pet Retreat — indoor/outdoor kennel runs, attentive care, and reduced rates for dogs from the same household sharing a run.',
+      'Dog boarding at River Ridge Pet Retreat: indoor/outdoor kennel runs, attentive care, and room for dogs from the same household to share a run.',
   },
 };
 
@@ -45,14 +45,15 @@ export default function BoardingPage() {
 
           <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-12">
             <div>
-              <SiteImage
-                src={service.image}
-                alt={service.imageAlt}
-                width={600}
-                height={600}
-                rounded="rounded-3xl"
-                className="shadow-sm"
-              />
+              <div className="rounded-3xl bg-sage/15 p-2 shadow-sm">
+                <SiteImage
+                  src={service.image}
+                  alt={service.imageAlt}
+                  width={600}
+                  height={600}
+                  rounded="rounded-2xl"
+                />
+              </div>
             </div>
             <div className="text-lg leading-relaxed text-ink/90">
               <p>{detail.intro}</p>

@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'Can dogs from the same household share a kennel?',
     answer:
-      'Yes — siblings and best friends can share a run together. It often makes the stay easier for them, and Tess can talk through the details when you reach out.',
+      'Yes, siblings and best friends can share a run together. It often makes the stay easier for them, and Tess can talk through the details when you reach out.',
   },
   {
     question: 'What grooming services do you offer?',
@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "What's included in the playtime add-on?",
     answer:
-      'A caretaker spends dedicated one-on-one time with your dog — running, fetching, or just hanging out — on top of the regular care every boarder receives.',
+      'A caretaker spends dedicated one-on-one time with your dog (running, fetching, or just hanging out) on top of the regular care every boarder receives.',
   },
   {
     question: 'How far in advance should I book?',
@@ -108,15 +108,16 @@ export default function HomePage() {
             </div>
 
             <div className="order-1 md:order-2">
-              <SiteImage
-                src="/images/hero.avif"
-                alt="Cartoon illustration of happy dogs at River Ridge Pet Retreat"
-                width={1200}
-                height={1200}
-                priority
-                rounded="rounded-3xl"
-                className="shadow-sm"
-              />
+              <div className="rounded-3xl bg-sage/15 p-2 shadow-sm">
+                <SiteImage
+                  src="/images/hero.avif"
+                  alt="Cartoon illustration of happy dogs at River Ridge Pet Retreat"
+                  width={1200}
+                  height={1200}
+                  priority
+                  rounded="rounded-2xl"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -174,7 +175,7 @@ export default function HomePage() {
               <p className="mt-4 text-lg text-ink/80">
                 We&apos;re a small, hands-on retreat in the Sequatchie Valley.
                 Every dog gets attention from people who&apos;ve been around
-                dogs their whole lives — not a rotating roster of part-timers.
+                dogs their whole lives, not a rotating roster of part-timers.
               </p>
             </div>
             <ul className="space-y-5 text-lg text-ink/90">
@@ -197,7 +198,7 @@ export default function HomePage() {
                   Local and familiar.
                 </span>{' '}
                 We serve Dunlap, Pikeville, Whitwell, Jasper, and the rest of
-                the valley — close enough that drop-off doesn&apos;t eat your
+                the valley. Close enough that drop-off doesn&apos;t eat your
                 whole morning.
               </li>
             </ul>
@@ -228,7 +229,7 @@ export default function HomePage() {
                   {t.quote}
                 </blockquote>
                 <figcaption className="mt-4 text-sm font-semibold text-bark">
-                  — {t.author}, {t.location}
+                  {t.author}, {t.location}
                 </figcaption>
               </figure>
             ))}

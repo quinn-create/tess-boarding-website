@@ -34,19 +34,20 @@ export default function AboutPage() {
 
         <div className="mt-10 grid gap-10 md:grid-cols-5 md:gap-12">
           <div className="md:col-span-2">
-            <SiteImage
-              src="/images/tess-portrait.avif"
-              alt="Cartoon portrait of Tess Boring, owner of River Ridge Pet Retreat"
-              width={800}
-              height={1000}
-              rounded="rounded-3xl"
-              className="shadow-sm"
-            />
+            <div className="rounded-3xl bg-sage/15 p-2 shadow-sm">
+              <SiteImage
+                src="/images/tess-portrait.avif"
+                alt="Cartoon portrait of Tess Boring, owner of River Ridge Pet Retreat"
+                width={800}
+                height={1000}
+                rounded="rounded-2xl"
+              />
+            </div>
 
             <figure className="mt-8 hidden md:block">
               <blockquote className="border-l-4 border-sage pl-5">
                 <p className="font-heading text-xl italic text-ink/90">
-                  &ldquo;Dogs at her feet — and they&apos;ve never really left
+                  &ldquo;Dogs at her feet, and they&apos;ve never really left
                   her side.&rdquo;
                 </p>
               </blockquote>
@@ -56,7 +57,7 @@ export default function AboutPage() {
           <div className="space-y-5 text-lg leading-relaxed text-ink/90 md:col-span-3">
             <p>
               Tess Boring grew up in the Sequatchie Valley with dogs at her
-              feet — and they&apos;ve never really left her side. From childhood
+              feet, and they&apos;ve never really left her side. From childhood
               through adulthood, dogs have been part of nearly every chapter of
               her life.
             </p>
@@ -75,7 +76,7 @@ export default function AboutPage() {
             <p>
               That&apos;s how River Ridge Pet Retreat came to be. Tess built it
               so she could spend her days doing what she&apos;s done her whole
-              life — taking care of dogs — and so families in our area would
+              life (taking care of dogs) and so families in our area would
               have somewhere they could trust to do the same.
             </p>
             <p>
