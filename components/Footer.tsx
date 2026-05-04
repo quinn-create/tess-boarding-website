@@ -69,8 +69,28 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-sage/20 pt-6 text-sm text-bark">
-          © {year} {SITE_NAME}
+        <div className="mt-10 flex flex-col gap-3 border-t border-sage/20 pt-6 text-sm text-bark sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} {SITE_NAME}</p>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link
+              href="/terms"
+              className="underline-offset-4 hover:text-sage-dark hover:underline"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/privacy"
+              className="underline-offset-4 hover:text-sage-dark hover:underline"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/disclaimer"
+              className="underline-offset-4 hover:text-sage-dark hover:underline"
+            >
+              Disclaimer
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
