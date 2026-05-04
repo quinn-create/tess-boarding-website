@@ -21,7 +21,7 @@ export const services: Service[] = [
     title: 'Dog Boarding',
     shortTitle: 'Boarding',
     href: '/services/boarding/',
-    image: '/images/service-boarding.png',
+    image: '/images/service-boarding.avif',
     imageAlt: 'Dog relaxing in a kennel run',
     blurb:
       "Cozy indoor/outdoor kennel runs with plenty of attention. Dogs from the same household can share a run, so siblings and best friends can stay together.",
@@ -76,7 +76,7 @@ export const services: Service[] = [
     title: 'Dog Grooming',
     shortTitle: 'Grooming',
     href: '/services/grooming/',
-    image: '/images/service-grooming.png',
+    image: '/images/service-grooming.avif',
     imageAlt: 'Dog being bathed and groomed',
     blurb:
       'Keep your dog feeling fresh with bath, de-shedding treatment, and nail trimming. Book on its own or as an add-on to a boarding stay.',
@@ -124,7 +124,7 @@ export const services: Service[] = [
     title: 'Playtime add-on',
     shortTitle: 'Playtime',
     href: '/services/boarding/#add-ons',
-    image: '/images/service-playtime.png',
+    image: '/images/service-playtime.avif',
     imageAlt: 'Dog playing fetch with a person',
     blurb:
       "One-on-one play sessions during a boarding stay. A caretaker spends dedicated time with your dog — running, fetching, or just hanging out — on top of the regular yard time.",

@@ -34,15 +34,13 @@ export default function AboutPage() {
 
         <div className="mt-10 grid gap-10 md:grid-cols-5 md:gap-12">
           <div className="md:col-span-2">
-            {/* IMAGE NEEDED: Cartoon portrait of Tess Boring */}
             <SiteImage
-              src="/images/tess-portrait.png"
+              src="/images/tess-portrait.avif"
               alt="Cartoon portrait of Tess Boring, owner of River Ridge Pet Retreat"
               width={800}
               height={1000}
               rounded="rounded-3xl"
               className="shadow-sm"
-              placeholder
             />
 
             <figure className="mt-8 hidden md:block">

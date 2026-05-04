@@ -10,9 +10,14 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
+    question: 'How much does it cost?',
+    answer:
+      "Rates depend on your dog and the length of stay, plus any add-ons like grooming or playtime. Send us an inquiry through the contact form and Tess will follow up with a quote and a payment link.",
+  },
+  {
     question: 'Can dogs from the same household share a kennel?',
     answer:
-      'Yes — siblings and best friends can share a run at a reduced rate. It often makes the stay easier for them, and lighter on your wallet.',
+      'Yes — siblings and best friends can share a run together. It often makes the stay easier for them, and Tess can talk through the details when you reach out.',
   },
   {
     question: 'What grooming services do you offer?',
@@ -103,16 +108,14 @@ export default function HomePage() {
             </div>
 
             <div className="order-1 md:order-2">
-              {/* IMAGE NEEDED: Hero — cartoon illustration of 2–3 happy dogs in a friendly outdoor retreat setting */}
               <SiteImage
-                src="/images/hero.png"
+                src="/images/hero.avif"
                 alt="Cartoon illustration of happy dogs at River Ridge Pet Retreat"
                 width={1200}
                 height={1200}
                 priority
                 rounded="rounded-3xl"
                 className="shadow-sm"
-                placeholder
               />
             </div>
           </div>
@@ -140,7 +143,6 @@ export default function HomePage() {
                   rounded="rounded-none"
                   aspectRatio="16 / 10"
                   className="md:!aspect-square"
-                  placeholder
                 />
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-heading text-2xl font-bold text-ink">

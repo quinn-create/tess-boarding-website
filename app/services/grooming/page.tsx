@@ -42,9 +42,6 @@ export default function GroomingPage() {
           <h1 className="mt-2 font-heading text-4xl font-bold leading-tight text-ink sm:text-5xl">
             Dog grooming, kept simple
           </h1>
-          <p className="mt-4 text-lg text-sage-dark sm:text-xl">
-            <span className="font-semibold">{service.price}</span>
-          </p>
 
           <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-12">
             <div>
@@ -55,7 +52,6 @@ export default function GroomingPage() {
                 height={600}
                 rounded="rounded-3xl"
                 className="shadow-sm"
-                placeholder
               />
             </div>
             <div className="text-lg leading-relaxed text-ink/90">
