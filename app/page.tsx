@@ -80,7 +80,7 @@ const faqSchema = {
 export default function HomePage() {
   return (
     <>
-      <section className="bg-cream">
+      <section className="bg-gradient-to-b from-cream to-sage/10">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
             <div className="order-2 md:order-1">
@@ -132,9 +132,11 @@ export default function HomePage() {
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {services.map((service) => (
-              <article
+              <Link
                 key={service.slug}
-                className="flex flex-col overflow-hidden rounded-3xl bg-sage/15 shadow-sm transition-shadow hover:shadow-md"
+                href={service.href}
+                aria-label={`Learn more about ${service.title}`}
+                className="group flex flex-col overflow-hidden rounded-3xl bg-sage/15 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:-translate-y-1 focus-visible:shadow-md"
               >
                 <SiteImage
                   src={service.image}
@@ -146,20 +148,28 @@ export default function HomePage() {
                   className="md:!aspect-square"
                 />
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-heading text-2xl font-bold text-ink">
+                  <h3 className="font-heading text-2xl font-bold text-ink group-hover:text-sage-dark">
                     {service.title}
                   </h3>
                   <p className="mt-3 flex-1 text-ink/80">{service.blurb}</p>
-                  {service.detail && (
-                    <Link
-                      href={service.href}
-                      className="mt-4 inline-block font-semibold text-sage-dark underline-offset-4 hover:underline"
+                  <span className="mt-4 inline-flex items-center gap-1 font-semibold text-sage-dark">
+                    Learn more about {service.shortTitle.toLowerCase()}
+                    <svg
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
                     >
-                      Learn more about {service.shortTitle.toLowerCase()} →
-                    </Link>
-                  )}
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

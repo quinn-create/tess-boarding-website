@@ -34,7 +34,7 @@ export default function GroomingPage() {
 
   return (
     <>
-      <section className="bg-cream">
+      <section className="bg-gradient-to-b from-cream to-sage/10">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <p className="text-sm font-semibold uppercase tracking-wide text-bark">
             Services
