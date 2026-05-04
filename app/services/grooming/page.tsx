@@ -51,6 +51,8 @@ export default function GroomingPage() {
                   alt={service.imageAlt}
                   width={600}
                   height={600}
+                  priority
+                  sizes="(min-width: 768px) 540px, 100vw"
                   rounded="rounded-2xl"
                 />
               </div>

@@ -1,35 +1,42 @@
 import Link from 'next/link';
 import NavLink from './NavLink';
+import ServicesNav from './ServicesNav';
 import PawIcon from './PawIcon';
 import { SITE_NAME } from '@/lib/site';
 
-const navLinks = [
+const topLinks = [
   { href: '/', label: 'Home' },
   { href: '/about/', label: 'About' },
-  { href: '/services/boarding/', label: 'Boarding' },
-  { href: '/services/grooming/', label: 'Grooming' },
-  { href: '/contact/', label: 'Contact' },
 ];
 
+const serviceLinks = [
+  { href: '/services/boarding/', label: 'Boarding' },
+  { href: '/services/grooming/', label: 'Grooming' },
+  { href: '/services/playtime/', label: 'Playtime' },
+];
+
+const contactLink = { href: '/contact/', label: 'Contact' };
+
 const desktopLinkClass =
-  'py-2 font-semibold text-ink transition-colors hover:text-sage-dark';
-const desktopLinkActiveClass = 'py-2 font-semibold text-sage-dark';
+  'inline-flex items-center rounded-xl px-3.5 py-2 font-semibold text-ink transition duration-150 hover:bg-sage/10 hover:text-sage-dark active:scale-[0.97]';
+const desktopLinkActiveClass =
+  'inline-flex items-center rounded-xl px-3.5 py-2 font-semibold bg-sage/15 text-sage-dark transition duration-150 active:scale-[0.97]';
 
 const mobileLinkClass =
-  'block rounded-xl px-3 py-3 font-semibold text-ink transition-colors hover:bg-sage/10';
+  'block rounded-xl px-3 py-3 font-semibold text-ink transition-colors duration-150 hover:bg-sage/10 hover:text-sage-dark';
 const mobileLinkActiveClass =
-  'block rounded-xl px-3 py-3 font-semibold bg-sage/15 text-sage-dark';
+  'block rounded-xl px-3 py-3 font-semibold bg-sage/15 text-sage-dark transition-colors duration-150';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 bg-cream shadow-sm">
+    <header className="sticky top-0 z-40 border-b border-sage/15 bg-cream shadow-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-20">
           <Link
             href="/"
-            className="flex items-center gap-2 text-ink hover:text-sage-dark"
+            className="group flex items-center gap-2 rounded-xl text-ink transition-colors duration-150 hover:text-sage-dark"
           >
-            <span className="text-sage">
+            <span className="text-sage transition-colors duration-150 group-hover:text-sage-dark">
               <PawIcon className="h-7 w-7 md:h-8 md:w-8" />
             </span>
             <span className="font-heading text-lg font-bold md:text-xl">
@@ -38,25 +45,36 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:block" aria-label="Primary">
-            <ul className="flex items-center gap-7">
-              {navLinks.map((link) => (
+            <ul className="flex items-center gap-1">
+              {topLinks.map((link) => (
                 <li key={link.href}>
                   <NavLink
                     href={link.href}
                     className={desktopLinkClass}
                     activeClassName={desktopLinkActiveClass}
-                    underline
                   >
                     {link.label}
                   </NavLink>
                 </li>
               ))}
+              <li>
+                <ServicesNav />
+              </li>
+              <li>
+                <NavLink
+                  href={contactLink.href}
+                  className={desktopLinkClass}
+                  activeClassName={desktopLinkActiveClass}
+                >
+                  {contactLink.label}
+                </NavLink>
+              </li>
             </ul>
           </nav>
 
           <details className="group relative md:hidden">
             <summary
-              className="-mr-1 inline-flex cursor-pointer list-none items-center justify-center rounded-xl p-3 text-ink hover:bg-sage/10 [&::-webkit-details-marker]:hidden"
+              className="-mr-1 inline-flex cursor-pointer list-none items-center justify-center rounded-xl p-3 text-ink transition-colors duration-150 hover:bg-sage/10 hover:text-sage-dark active:bg-sage/15 [&::-webkit-details-marker]:hidden"
               aria-label="Toggle navigation menu"
             >
               <svg
@@ -89,11 +107,11 @@ export default function Header() {
             </summary>
 
             <nav
-              className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-sage/20 bg-cream p-2 shadow-md"
+              className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-sage/20 bg-cream p-2 shadow-lg"
               aria-label="Mobile"
             >
               <ul className="space-y-1">
-                {navLinks.map((link) => (
+                {topLinks.map((link) => (
                   <li key={link.href}>
                     <NavLink
                       href={link.href}
@@ -104,6 +122,32 @@ export default function Header() {
                     </NavLink>
                   </li>
                 ))}
+                <li
+                  className="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wide text-bark"
+                  aria-hidden="true"
+                >
+                  Services
+                </li>
+                {serviceLinks.map((link) => (
+                  <li key={link.href}>
+                    <NavLink
+                      href={link.href}
+                      className={mobileLinkClass}
+                      activeClassName={mobileLinkActiveClass}
+                    >
+                      {link.label}
+                    </NavLink>
+                  </li>
+                ))}
+                <li>
+                  <NavLink
+                    href={contactLink.href}
+                    className={mobileLinkClass}
+                    activeClassName={mobileLinkActiveClass}
+                  >
+                    {contactLink.label}
+                  </NavLink>
+                </li>
               </ul>
             </nav>
           </details>

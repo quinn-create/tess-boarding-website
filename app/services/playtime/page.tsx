@@ -2,26 +2,26 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteImage from '@/components/SiteImage';
 import { serviceBySlug } from '@/lib/services';
-import { PHONE, SITE_NAME, SITE_URL, SLA_RESPONSE } from '@/lib/site';
+import { PHONE, SITE_URL, SLA_RESPONSE } from '@/lib/site';
 
-const service = serviceBySlug('boarding')!;
+const service = serviceBySlug('playtime')!;
 
 export const metadata: Metadata = {
-  title: 'Dog Boarding in Dunlap, TN',
+  title: 'Playtime Add-on for Boarding Stays',
   description:
-    'Dog boarding at River Ridge Pet Retreat: indoor/outdoor kennel runs, attentive care, and room for dogs from the same household to share a run.',
-  alternates: { canonical: '/services/boarding/' },
+    'Dedicated one-on-one play sessions during your dog\'s boarding stay at River Ridge Pet Retreat in Dunlap, TN.',
+  alternates: { canonical: '/services/playtime/' },
   openGraph: {
-    title: 'Dog Boarding',
+    title: 'Playtime Add-on',
     description:
-      'Dog boarding at River Ridge Pet Retreat: indoor/outdoor kennel runs, attentive care, and room for dogs from the same household to share a run.',
+      'Dedicated one-on-one play sessions during your dog\'s boarding stay at River Ridge Pet Retreat.',
   },
 };
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'Dog Boarding',
+  serviceType: 'Dog Playtime',
   name: service.title,
   description: service.detail!.intro,
   provider: { '@id': `${SITE_URL}/#business` },
@@ -29,7 +29,7 @@ const serviceSchema = {
   url: `${SITE_URL}${service.href}`,
 };
 
-export default function BoardingPage() {
+export default function PlaytimePage() {
   const detail = service.detail!;
 
   return (
@@ -40,8 +40,18 @@ export default function BoardingPage() {
             Services
           </p>
           <h1 className="mt-2 font-heading text-4xl font-bold leading-tight text-ink sm:text-5xl">
-            Dog boarding in the Sequatchie Valley
+            Playtime add-on
           </h1>
+          <p className="mt-3 text-lg text-ink/80">
+            An add-on to a{' '}
+            <Link
+              href="/services/boarding/"
+              className="font-semibold text-sage-dark underline-offset-4 hover:underline"
+            >
+              boarding stay
+            </Link>
+            .
+          </p>
 
           <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-12">
             <div>
@@ -68,7 +78,7 @@ export default function BoardingPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto max-w-3xl space-y-10">
             {detail.sections.map((s, i) => (
-              <div key={i} id={i === 2 ? 'add-ons' : undefined}>
+              <div key={i}>
                 <h2 className="font-heading text-2xl font-bold text-ink sm:text-3xl">
                   {s.heading}
                 </h2>
@@ -81,42 +91,11 @@ export default function BoardingPage() {
         </div>
       </section>
 
-      {detail.bringList && (
-        <section className="bg-cream">
-          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-            <div className="mx-auto max-w-3xl">
-              <h2 className="font-heading text-2xl font-bold text-ink sm:text-3xl">
-                What to bring at drop-off
-              </h2>
-              <ul className="mt-6 space-y-3 text-lg text-ink/90">
-                {detail.bringList.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <svg
-                      className="mt-1 h-5 w-5 shrink-0 text-sage"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-      )}
-
-      <section className="bg-sage/10">
+      <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <h2 className="font-heading text-2xl font-bold text-ink sm:text-3xl">
-              Boarding questions
+              Playtime questions
             </h2>
             <dl className="mt-8 space-y-6">
               {detail.faqs.map((f) => (
@@ -136,10 +115,10 @@ export default function BoardingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-sage px-6 py-12 text-center shadow-sm sm:px-12 sm:py-14">
             <h2 className="font-heading text-3xl font-bold text-cream sm:text-4xl">
-              Reserve a spot for your dog
+              Add playtime to your dog&apos;s stay
             </h2>
             <p className="mt-3 text-lg text-cream/90">
-              Send us the dates and we&apos;ll confirm availability. {SLA_RESPONSE}
+              Mention it when you send your inquiry. {SLA_RESPONSE}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
               <Link

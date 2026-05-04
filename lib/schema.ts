@@ -31,7 +31,7 @@ export const localBusinessSchema = {
   description: SITE_DESCRIPTION,
   url: SITE_URL,
   telephone: PHONE.display,
-  image: `${SITE_URL}/images/hero.png`,
+  image: `${SITE_URL}/images/hero-og.jpg`,
   priceRange: '$$',
   address: { '@type': 'PostalAddress', ...ADDRESS },
   geo: { '@type': 'GeoCoordinates', ...GEO },

@@ -17,4 +17,6 @@
 - [About Tess](https://riverridgepetretreat.com/about/): owner bio
 - [Boarding](https://riverridgepetretreat.com/services/boarding/): boarding details, what to bring, FAQs
 - [Grooming](https://riverridgepetretreat.com/services/grooming/): grooming services, scheduling, FAQs
+- [Playtime add-on](https://riverridgepetretreat.com/services/playtime/): one-on-one play during a boarding stay, FAQs
 - [Contact](https://riverridgepetretreat.com/contact/): booking inquiry form, phone, address, directions
+- [Privacy Policy](https://riverridgepetretreat.com/privacy/): how customer and pet information is collected, used, and disclosed

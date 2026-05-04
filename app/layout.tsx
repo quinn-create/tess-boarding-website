@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: '/images/hero.png',
+        url: '/images/hero-og.jpg',
         width: 1200,
         height: 1200,
         alt: SITE_NAME,

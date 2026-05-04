@@ -123,11 +123,49 @@ export const services: Service[] = [
     slug: 'playtime',
     title: 'Playtime add-on',
     shortTitle: 'Playtime',
-    href: '/services/boarding/#add-ons',
+    href: '/services/playtime/',
     image: '/images/service-playtime.avif',
     imageAlt: 'Dog playing fetch with a person',
     blurb:
       "One-on-one play sessions during a boarding stay. A caretaker spends dedicated time with your dog (running, fetching, or just hanging out) on top of the regular yard time.",
+    detail: {
+      intro:
+        "The playtime add-on is dedicated one-on-one time with your dog during a boarding stay. Every boarder already gets supervised yard time and attention throughout the day; playtime is one caretaker, focused on your dog, for a set block of time.",
+      sections: [
+        {
+          heading: 'What it looks like',
+          body:
+            "Whatever your dog enjoys. High-energy dogs get fetch, tug, or a run around the yard. Older dogs get a slower-paced walk and lots of pets. Some dogs just want to nap next to a person. The caretaker reads your dog and goes from there.",
+        },
+        {
+          heading: 'Who it helps',
+          body:
+            "Boarding is a big change in routine. Some dogs settle in fine on their own. Others, especially those used to a lot of attention at home, do better with the extra one-on-one time. If your dog is high-energy, anxious in new places, or used to plenty of interaction, playtime smooths the transition.",
+        },
+        {
+          heading: 'How to add it',
+          body:
+            "Mention it when you send your inquiry. Playtime can be added to a single day or every day of the stay. The caretaker schedules sessions around your dog's natural energy times, so a morning dog gets a morning session.",
+        },
+      ],
+      faqs: [
+        {
+          question: 'Can I book playtime without boarding?',
+          answer:
+            "No, playtime is an add-on to a boarding stay. For something else (a walk, drop-in care), give us a call and we can talk about it.",
+        },
+        {
+          question: 'How long is a session?',
+          answer:
+            "Usually 20 to 30 minutes, but we follow your dog's lead, not a stopwatch. If they're done, we're done; if they want more, we can do more.",
+        },
+        {
+          question: 'Can I add playtime mid-stay?',
+          answer:
+            "Yes. Just call or send a message during the stay and we'll add it.",
+        },
+      ],
+    },
   },
 ];
 

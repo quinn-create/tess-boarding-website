@@ -29,7 +29,7 @@ export default function NavLink({
   return (
     <Link
       href={href}
-      className={`relative inline-block ${isActive ? activeClassName : className}`}
+      className={`relative ${isActive ? activeClassName : className}`}
       aria-current={isActive ? 'page' : undefined}
     >
       {children}

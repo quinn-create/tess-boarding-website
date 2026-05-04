@@ -41,6 +41,7 @@ export default function AboutPage() {
                 alt="Cartoon portrait of Tess Boring, owner of River Ridge Pet Retreat"
                 width={800}
                 height={1000}
+                sizes="(min-width: 768px) 460px, 100vw"
                 rounded="rounded-2xl"
               />
             </div>

@@ -115,6 +115,7 @@ export default function HomePage() {
                   width={1200}
                   height={1200}
                   priority
+                  sizes="(min-width: 768px) 540px, 100vw"
                   rounded="rounded-2xl"
                 />
               </div>
@@ -143,6 +144,7 @@ export default function HomePage() {
                   alt={service.imageAlt}
                   width={600}
                   height={600}
+                  sizes="(min-width: 768px) 360px, 100vw"
                   rounded="rounded-none"
                   aspectRatio="16 / 10"
                   className="md:!aspect-square"

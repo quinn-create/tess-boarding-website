@@ -10,7 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about/',
     '/services/boarding/',
     '/services/grooming/',
+    '/services/playtime/',
     '/contact/',
+    '/disclaimer/',
+    '/privacy/',
   ];
   return paths.map((p) => ({ url: `${SITE_URL}${p}`, lastModified }));
 }
