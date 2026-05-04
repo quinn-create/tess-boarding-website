@@ -11,19 +11,19 @@ export default function Icon() {
         style={{
           width: '100%',
           height: '100%',
-          background: '#FAF6EE',
+          background: '#5D7A5A',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: '6px',
+          borderRadius: '8px',
         }}
       >
         <svg
           viewBox="0 0 64 64"
-          width="26"
-          height="26"
+          width="24"
+          height="24"
           xmlns="http://www.w3.org/2000/svg"
-          fill="#7A9B76"
+          fill="#FAF6EE"
         >
           <ellipse cx="14" cy="22" rx="6" ry="8" />
           <ellipse cx="50" cy="22" rx="6" ry="8" />

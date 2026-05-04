@@ -11,7 +11,7 @@ export default function AppleIcon() {
         style={{
           width: '100%',
           height: '100%',
-          background: '#FAF6EE',
+          background: '#5D7A5A',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -19,10 +19,10 @@ export default function AppleIcon() {
       >
         <svg
           viewBox="0 0 64 64"
-          width="140"
-          height="140"
+          width="120"
+          height="120"
           xmlns="http://www.w3.org/2000/svg"
-          fill="#7A9B76"
+          fill="#FAF6EE"
         >
           <ellipse cx="14" cy="22" rx="6" ry="8" />
           <ellipse cx="50" cy="22" rx="6" ry="8" />

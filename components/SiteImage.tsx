@@ -37,7 +37,7 @@ export default function SiteImage({
       <PlaceholderImage
         width={width}
         height={height}
-        label={placeholderLabel ?? `Image coming soon — ${alt}`}
+        label={placeholderLabel ?? `Image coming soon: ${alt}`}
         className={className}
         rounded={rounded}
         aspectRatio={aspectRatio}

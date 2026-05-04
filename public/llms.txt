@@ -1,6 +1,6 @@
 # River Ridge Pet Retreat
 
-> Dog boarding, grooming, and playtime in Dunlap, Tennessee. Family-run by Tess Boring, who has spent a lifetime caring for dogs. Serves the Sequatchie Valley — Dunlap, Pikeville, Whitwell, Jasper, and surrounding areas.
+> Dog boarding, grooming, and playtime in Dunlap, Tennessee. Family-run by Tess Boring, who has spent a lifetime caring for dogs. Serves the Sequatchie Valley: Dunlap, Pikeville, Whitwell, Jasper, and surrounding areas.
 
 ## Location & contact
 - Address: 1315 River Ridge Rd, Dunlap, TN 37327
@@ -8,13 +8,13 @@
 - Owner: Tess Boring
 
 ## Services
-- **Boarding** — indoor/outdoor kennel runs, with reduced rates for dogs from the same household sharing a run
-- **Grooming** — bath, de-shedding treatment, nail trimming
-- **Playtime add-on** — dedicated one-on-one play sessions with a caretaker during a boarding stay
+- **Boarding**: indoor/outdoor kennel runs, with room for dogs from the same household to share a run
+- **Grooming**: bath, de-shedding treatment, nail trimming
+- **Playtime add-on**: dedicated one-on-one play sessions with a caretaker during a boarding stay
 
 ## Pages
-- [Home](https://riverridgepetretreat.com/) — services overview, FAQ, testimonials
-- [About Tess](https://riverridgepetretreat.com/about/) — owner bio
-- [Boarding](https://riverridgepetretreat.com/services/boarding/) — boarding details, what to bring, FAQs
-- [Grooming](https://riverridgepetretreat.com/services/grooming/) — grooming services, scheduling, FAQs
-- [Contact](https://riverridgepetretreat.com/contact/) — booking inquiry form, phone, address, directions
+- [Home](https://riverridgepetretreat.com/): services overview, FAQ, testimonials
+- [About Tess](https://riverridgepetretreat.com/about/): owner bio
+- [Boarding](https://riverridgepetretreat.com/services/boarding/): boarding details, what to bring, FAQs
+- [Grooming](https://riverridgepetretreat.com/services/grooming/): grooming services, scheduling, FAQs
+- [Contact](https://riverridgepetretreat.com/contact/): booking inquiry form, phone, address, directions

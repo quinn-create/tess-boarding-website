@@ -205,7 +205,7 @@ export default function ContactPageClient() {
                     aria-describedby="contact-helper"
                   />
                   <p id="contact-helper" className="mt-2 text-sm text-bark">
-                    Phone or email — whichever you prefer. Just give us at
+                    Phone or email, whichever you prefer. Just give us at
                     least one.
                   </p>
                 </div>

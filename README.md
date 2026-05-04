@@ -53,7 +53,6 @@ All site identity, NAP, hours, pricing, and customer-service copy live in **[`li
 | `[PHONE NUMBER]` | The real phone number. The `tel:` href version uses the same string — when you replace, set `display: '(423) 555-0123'` and `href: 'tel:+14235550123'` (digits-only with country code). |
 | `[EMAIL ADDRESS]` | The real email — same pattern: `display: 'tess@…'` and `href: 'mailto:tess@…'`. |
 | `[HOURS_WEEKDAY]` / `[HOURS_SAT]` | Display strings like `'8:00 AM – 6:00 PM'`. Also set the `opens` / `closes` 24h fields if they differ from the defaults — those feed the schema. |
-| `[PRICING_BOARDING]` / `[PRICING_GROOMING]` / `[PRICING_PLAYTIME]` / `[PRICING_SHARE_DISCOUNT]` | Real prices, e.g. `'$30–45 / night'`. Showing a range is much better than showing nothing. |
 
 Other placeholders to find and replace:
 
