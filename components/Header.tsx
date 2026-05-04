@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import NavLink from './NavLink';
-import ServicesNav from './ServicesNav';
+import ServicesMenu from './ServicesMenu';
 import PawIcon from './PawIcon';
 import { SITE_NAME } from '@/lib/site';
 
@@ -9,12 +9,15 @@ const topLinks = [
   { href: '/about/', label: 'About' },
 ];
 
+const mobileServicesLink = { href: '/services/', label: 'Services' };
+
 const serviceLinks = [
   { href: '/services/boarding/', label: 'Boarding' },
   { href: '/services/grooming/', label: 'Grooming' },
   { href: '/services/playtime/', label: 'Playtime' },
 ];
 
+const paymentLink = { href: '/payment/', label: 'Payment' };
 const contactLink = { href: '/contact/', label: 'Contact' };
 
 const desktopLinkClass =
@@ -26,6 +29,11 @@ const mobileLinkClass =
   'block rounded-xl px-3 py-3 font-semibold text-ink transition-colors duration-150 hover:bg-sage/10 hover:text-sage-dark';
 const mobileLinkActiveClass =
   'block rounded-xl px-3 py-3 font-semibold bg-sage/15 text-sage-dark transition-colors duration-150';
+
+const mobileSubLinkClass =
+  'block rounded-xl pl-7 pr-3 py-2.5 text-sm font-semibold text-ink transition-colors duration-150 hover:bg-sage/10 hover:text-sage-dark';
+const mobileSubLinkActiveClass =
+  'block rounded-xl pl-7 pr-3 py-2.5 text-sm font-semibold bg-sage/15 text-sage-dark transition-colors duration-150';
 
 export default function Header() {
   return (
@@ -58,7 +66,16 @@ export default function Header() {
                 </li>
               ))}
               <li>
-                <ServicesNav />
+                <ServicesMenu />
+              </li>
+              <li>
+                <NavLink
+                  href={paymentLink.href}
+                  className={desktopLinkClass}
+                  activeClassName={desktopLinkActiveClass}
+                >
+                  {paymentLink.label}
+                </NavLink>
               </li>
               <li>
                 <NavLink
@@ -122,23 +139,35 @@ export default function Header() {
                     </NavLink>
                   </li>
                 ))}
-                <li
-                  className="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wide text-bark"
-                  aria-hidden="true"
-                >
-                  Services
+                <li>
+                  <NavLink
+                    href={mobileServicesLink.href}
+                    className={mobileLinkClass}
+                    activeClassName={mobileLinkActiveClass}
+                  >
+                    {mobileServicesLink.label}
+                  </NavLink>
                 </li>
                 {serviceLinks.map((link) => (
                   <li key={link.href}>
                     <NavLink
                       href={link.href}
-                      className={mobileLinkClass}
-                      activeClassName={mobileLinkActiveClass}
+                      className={mobileSubLinkClass}
+                      activeClassName={mobileSubLinkActiveClass}
                     >
                       {link.label}
                     </NavLink>
                   </li>
                 ))}
+                <li>
+                  <NavLink
+                    href={paymentLink.href}
+                    className={mobileLinkClass}
+                    activeClassName={mobileLinkActiveClass}
+                  >
+                    {paymentLink.label}
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     href={contactLink.href}

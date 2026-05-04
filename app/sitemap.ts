@@ -8,9 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     '/',
     '/about/',
+    '/services/',
     '/services/boarding/',
     '/services/grooming/',
     '/services/playtime/',
+    '/payment/',
     '/contact/',
     '/disclaimer/',
     '/privacy/',
