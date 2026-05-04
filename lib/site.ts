@@ -70,14 +70,6 @@ export const SERVICE_AREAS = [
   'Jasper, TN',
 ];
 
-// Pricing — replace placeholders with real ranges before launch.
-export const PRICING = {
-  boarding: '[PRICING_BOARDING]', // e.g. '$30–45 / night'
-  grooming: '[PRICING_GROOMING]', // e.g. '$50–80'
-  playtime: '[PRICING_PLAYTIME]', // e.g. '+$10 / day'
-  shareDiscount: '[PRICING_SHARE_DISCOUNT]', // e.g. '15% off when sharing a run'
-} as const;
-
 export const SLA_RESPONSE = 'We reply within 24 hours on weekdays.';
 export const LICENSE_LINE = 'Licensed and insured.';
 

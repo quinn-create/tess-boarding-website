@@ -1,5 +1,3 @@
-import { PRICING } from './site';
-
 export type Service = {
   slug: 'boarding' | 'grooming' | 'playtime';
   title: string;
@@ -8,8 +6,6 @@ export type Service = {
   image: string;
   imageAlt: string;
   blurb: string;
-  price: string;
-  priceNote?: string;
   // Detail-page content. `playtime` is an add-on so it has no detail page.
   detail?: {
     intro: string;
@@ -28,9 +24,7 @@ export const services: Service[] = [
     image: '/images/service-boarding.png',
     imageAlt: 'Dog relaxing in a kennel run',
     blurb:
-      "Cozy indoor/outdoor kennel runs with plenty of attention. Dogs from the same household can share a run at a reduced rate, so siblings and best friends can stay together.",
-    price: PRICING.boarding,
-    priceNote: PRICING.shareDiscount,
+      "Cozy indoor/outdoor kennel runs with plenty of attention. Dogs from the same household can share a run, so siblings and best friends can stay together.",
     detail: {
       intro:
         "Boarding at River Ridge means your dog has space to move, people who pay attention, and a quiet spot to rest at the end of the day. Whether it's a weekend trip or a longer stay, the daily routine stays steady so your dog can settle in.",
@@ -43,7 +37,7 @@ export const services: Service[] = [
         {
           heading: 'Sharing a run',
           body:
-            "Dogs from the same household can share a kennel run at a reduced rate. They almost always settle in faster when they have a familiar friend along, and it's lighter on your wallet too.",
+            "Dogs from the same household can share a kennel run. They almost always settle in faster when they have a familiar friend along.",
         },
         {
           heading: 'Add-ons',
@@ -86,7 +80,6 @@ export const services: Service[] = [
     imageAlt: 'Dog being bathed and groomed',
     blurb:
       'Keep your dog feeling fresh with bath, de-shedding treatment, and nail trimming. Book on its own or as an add-on to a boarding stay.',
-    price: PRICING.grooming,
     detail: {
       intro:
         "Grooming at River Ridge is straightforward and gentle — bath, de-shedding, nails. We don't do show grooming or breed-specific styling; we keep your dog clean, comfortable, and looking like themselves.",
@@ -135,7 +128,6 @@ export const services: Service[] = [
     imageAlt: 'Dog playing fetch with a person',
     blurb:
       "One-on-one play sessions during a boarding stay. A caretaker spends dedicated time with your dog — running, fetching, or just hanging out — on top of the regular yard time.",
-    price: PRICING.playtime,
   },
 ];
 
