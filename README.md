@@ -4,7 +4,7 @@ Marketing website for River Ridge Pet Retreat — a dog boarding and grooming fa
 
 ## Stack
 
-- Next.js (App Router) + TypeScript
+- Next.js 16 (App Router) + TypeScript
 - Tailwind CSS
 - Static export (`output: 'export'`) — no SSR, no API routes, no middleware
 - Contact form posts directly to [Web3Forms](https://web3forms.com)
@@ -28,11 +28,9 @@ Produces a fully static site in `out/`.
 
 ## Deploy to Cloudflare Pages
 
-Two options:
-
 **Option A — Direct upload**
 1. Run `npm run build`
-2. In the Cloudflare Pages dashboard, create a new project and upload the `out/` directory
+2. Upload the `out/` directory via the Cloudflare Pages dashboard
 
 **Option B — Git integration**
 1. Push this repo to GitHub/GitLab
@@ -42,49 +40,72 @@ Two options:
    - **Build output directory:** `out`
    - **Node version:** 20
 
-No Cloudflare Pages adapter is needed — `output: 'export'` produces a plain static bundle.
+No Cloudflare Pages adapter is needed.
 
-## Placeholders to replace before launch
+## Pre-launch checklist
 
-Search the codebase for these tokens and replace them.
+### 1. Replace text placeholders
 
-| Token | Where | Replace with |
-| --- | --- | --- |
-| `[PHONE NUMBER]` | `components/Footer.tsx`, `app/contact/ContactPageClient.tsx` | The real phone number. The `tel:` href versions need digits only (e.g. `tel:+14235550123`); the visible text can be formatted however you like. |
-| `[WEB3FORMS_ACCESS_KEY]` | `app/contact/ContactPageClient.tsx` | Your free access key from [web3forms.com](https://web3forms.com) |
-| `https://riverridgepetretreat.com/contact?success=1` | `app/contact/ContactPageClient.tsx` (the `redirect` hidden input) | Same URL but on the production domain if it differs |
-| `SITE_URL` constant | `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts` | Production domain if different from `https://riverridgepetretreat.com` |
+All site identity, NAP, hours, pricing, and customer-service copy live in **[`lib/site.ts`](lib/site.ts)**. Edit one file to update everywhere:
 
-## Image files
+| Placeholder | What to replace with |
+| --- | --- |
+| `[PHONE NUMBER]` | The real phone number. The `tel:` href version uses the same string — when you replace, set `display: '(423) 555-0123'` and `href: 'tel:+14235550123'` (digits-only with country code). |
+| `[EMAIL ADDRESS]` | The real email — same pattern: `display: 'tess@…'` and `href: 'mailto:tess@…'`. |
+| `[HOURS_WEEKDAY]` / `[HOURS_SAT]` | Display strings like `'8:00 AM – 6:00 PM'`. Also set the `opens` / `closes` 24h fields if they differ from the defaults — those feed the schema. |
+| `[PRICING_BOARDING]` / `[PRICING_GROOMING]` / `[PRICING_PLAYTIME]` / `[PRICING_SHARE_DISCOUNT]` | Real prices, e.g. `'$30–45 / night'`. Showing a range is much better than showing nothing. |
 
-Drop these PNG files into `public/images/`. Dimensions and subjects are listed in [`public/images/README.md`](public/images/README.md).
+Other placeholders to find and replace:
 
-- `hero.png` (1200×1200)
-- `service-boarding.png` (600×600)
-- `service-grooming.png` (600×600)
-- `service-playtime.png` (600×600)
-- `tess-portrait.png` (800×1000)
+| Placeholder | Where |
+| --- | --- |
+| `[WEB3FORMS_ACCESS_KEY]` | `app/contact/ContactPageClient.tsx`. Get a free key from [web3forms.com](https://web3forms.com). |
+| `[TESTIMONIAL_*]` | `app/page.tsx` — three quote slots in the testimonials section. Use `[TESTIMONIAL_*]` exact match to find them. Author + location too. |
+| `https://riverridgepetretreat.com/contact?success=1` | `app/contact/ContactPageClient.tsx` (Web3Forms `redirect` hidden input). Update if the production domain differs. |
 
-Until they're present the site renders cream "Image coming soon" placeholders at the correct aspect ratios so the layout is preserved. Once the real images are in place, switch `components/SiteImage.tsx` over to `next/image` (it currently renders a placeholder div).
+### 2. Drop in real images
+
+PNGs go in `public/images/`. See [`public/images/README.md`](public/images/README.md) for filenames, dimensions, and pre-optimization guidance (AVIF preferred — `images: { unoptimized: true }` is required for static export, so `next/image` won't transform formats).
+
+Each `<SiteImage>` call site currently passes `placeholder` — drop the prop on a per-image basis as real files arrive.
+
+### 3. Verify the LocalBusiness schema
+
+In [`lib/schema.ts`](lib/schema.ts) and via [`lib/site.ts`](lib/site.ts), confirm:
+- `geo.latitude` / `geo.longitude` — currently a rough Dunlap, TN approximation (35.3722, -85.3886). Verify with the actual lot using Google Maps right-click → "What's here?" and update.
+- `sameAs` — add Google Business Profile, Facebook, Instagram URLs once available.
 
 ## Project structure
 
 ```
 app/
-  layout.tsx              shared header/footer + fonts + metadata
-  page.tsx                home
-  about/page.tsx          about Tess
-  contact/page.tsx        contact (server wrapper for metadata)
-  contact/ContactPageClient.tsx  contact form (client component)
-  globals.css             Tailwind directives + base styles
-  sitemap.ts              /sitemap.xml
-  robots.ts               /robots.txt
+  layout.tsx                     shared header/footer + fonts + metadata + LocalBusiness schema + skip link
+  page.tsx                       home (services, why, testimonials, FAQ, closing CTA)
+  about/page.tsx                 about Tess
+  contact/page.tsx               contact (server wrapper for metadata)
+  contact/ContactPageClient.tsx  contact form (client)
+  contact/SuccessBanner.tsx      submission-success banner (client, isolated for Suspense)
+  services/boarding/page.tsx     dog boarding detail page
+  services/grooming/page.tsx     dog grooming detail page
+  globals.css                    Tailwind directives + base styles
+  sitemap.ts                     /sitemap.xml
+  robots.ts                      /robots.txt
+  icon.tsx                       /icon (32×32 favicon, generated at build time)
+  apple-icon.tsx                 /apple-icon (180×180, generated at build time)
 components/
-  Header.tsx              sticky nav + mobile menu
-  Footer.tsx              address + phone + copyright
-  PawIcon.tsx             inline SVG used in header/footer
-  SiteImage.tsx           swap-in for next/image once real PNGs exist
-  PlaceholderImage.tsx    cream placeholder div
+  Header.tsx                     sticky nav, server component, <details>-based mobile menu
+  Footer.tsx                     NAP, hours, license line, copyright
+  NavLink.tsx                    client wrapper handling active-link state
+  PawIcon.tsx                    inline SVG used in header/footer/favicon
+  SiteImage.tsx                  next/image when ready, placeholder div until then
+  PlaceholderImage.tsx           cream "Image coming soon" div
+  MapPreview.tsx                 lightweight static map preview (replaces Google Maps iframe)
+lib/
+  site.ts                        single source of truth: NAP, hours, pricing, copy, geo
+  services.ts                    canonical service definitions (used by home + detail pages + schema)
+  schema.ts                      LocalBusiness JSON-LD generation
 public/
-  images/                 drop PNGs here (see README in that folder)
+  images/                        drop PNGs here (see README in that folder)
+  llms.txt                       site description for AI assistants
+  _headers                       Cloudflare Pages security/cache headers
 ```

@@ -15,7 +15,7 @@ const config: Config = {
         },
         terracotta: '#D88C6A',
         ink: '#2C2A26',
-        bark: '#8B6F47',
+        bark: '#6B5235',
       },
       fontFamily: {
         heading: ['var(--font-fraunces)', 'serif'],

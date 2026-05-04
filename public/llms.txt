@@ -10,9 +10,11 @@
 ## Services
 - **Boarding** — indoor/outdoor kennel runs, with reduced rates for dogs from the same household sharing a run
 - **Grooming** — bath, de-shedding treatment, nail trimming
-- **Playtime add-on** — dedicated one-on-one play sessions with a dog tech during a boarding stay
+- **Playtime add-on** — dedicated one-on-one play sessions with a caretaker during a boarding stay
 
 ## Pages
-- [Home](https://riverridgepetretreat.com/) — services overview and FAQ
+- [Home](https://riverridgepetretreat.com/) — services overview, FAQ, testimonials
 - [About Tess](https://riverridgepetretreat.com/about/) — owner bio
-- [Contact](https://riverridgepetretreat.com/contact/) — booking inquiry form, phone, address, map
+- [Boarding](https://riverridgepetretreat.com/services/boarding/) — boarding details, what to bring, FAQs
+- [Grooming](https://riverridgepetretreat.com/services/grooming/) — grooming services, scheduling, FAQs
+- [Contact](https://riverridgepetretreat.com/contact/) — booking inquiry form, phone, address, directions

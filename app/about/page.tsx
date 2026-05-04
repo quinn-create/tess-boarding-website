@@ -1,28 +1,24 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteImage from '@/components/SiteImage';
+import { SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'About Tess',
-  description:
-    'Meet Tess Boring, the lifelong dog person behind River Ridge Pet Retreat in Dunlap, Tennessee.',
+  description: `Meet Tess Boring, the lifelong dog person behind ${SITE_NAME} in Dunlap, Tennessee.`,
   alternates: { canonical: '/about/' },
   openGraph: {
     title: 'About Tess',
-    description:
-      'Meet Tess Boring, the lifelong dog person behind River Ridge Pet Retreat in Dunlap, Tennessee.',
+    description: `Meet Tess Boring, the lifelong dog person behind ${SITE_NAME} in Dunlap, Tennessee.`,
   },
 };
-
-const SITE_URL = 'https://riverridgepetretreat.com';
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Tess Boring',
   jobTitle: 'Owner',
-  description:
-    'Lifelong dog person and owner of River Ridge Pet Retreat in Dunlap, Tennessee.',
+  description: `Lifelong dog person and owner of ${SITE_NAME} in Dunlap, Tennessee.`,
   worksFor: { '@id': `${SITE_URL}/#business` },
   url: `${SITE_URL}/about/`,
   image: `${SITE_URL}/images/tess-portrait.png`,
@@ -46,7 +42,17 @@ export default function AboutPage() {
               height={1000}
               rounded="rounded-3xl"
               className="shadow-sm"
+              placeholder
             />
+
+            <figure className="mt-8 hidden md:block">
+              <blockquote className="border-l-4 border-sage pl-5">
+                <p className="font-heading text-xl italic text-ink/90">
+                  &ldquo;Dogs at her feet — and they&apos;ve never really left
+                  her side.&rdquo;
+                </p>
+              </blockquote>
+            </figure>
           </div>
 
           <div className="space-y-5 text-lg leading-relaxed text-ink/90 md:col-span-3">
@@ -87,7 +93,7 @@ export default function AboutPage() {
             Have questions or ready to book?
           </p>
           <Link
-            href="/contact"
+            href="/contact/"
             className="mt-3 inline-block font-semibold text-sage-dark underline-offset-4 hover:underline"
           >
             Contact Tess →

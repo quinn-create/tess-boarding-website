@@ -1,52 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteImage from '@/components/SiteImage';
+import { services } from '@/lib/services';
+import { PHONE, SLA_RESPONSE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
-
-const services = [
-  {
-    title: 'Boarding',
-    image: '/images/service-boarding.png',
-    alt: 'Dog relaxing in a kennel run',
-    body: (
-      <p>
-        Cozy indoor/outdoor kennel runs with plenty of attention. Dogs from the
-        same household can share a run at a reduced rate, so siblings and best
-        friends can stay together.
-      </p>
-    ),
-  },
-  {
-    title: 'Grooming',
-    image: '/images/service-grooming.png',
-    alt: 'Dog being bathed and groomed',
-    body: (
-      <>
-        <p>Keep your dog feeling fresh with our grooming services:</p>
-        <ul className="mt-3 list-disc space-y-1 pl-5">
-          <li>Bath</li>
-          <li>De-shedding treatment</li>
-          <li>Nail trimming</li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    title: 'Playtime add-on',
-    image: '/images/service-playtime.png',
-    alt: 'Dog playing fetch with a person',
-    body: (
-      <p>
-        Want your dog to get extra one-on-one fun while they&apos;re with us?
-        Add playtime to any boarding stay and one of our dog techs will spend
-        dedicated time playing and running around with your pup.
-      </p>
-    ),
-  },
-];
 
 const faqs = [
   {
@@ -62,7 +22,7 @@ const faqs = [
   {
     question: "What's included in the playtime add-on?",
     answer:
-      'A dog tech spends dedicated one-on-one time with your dog — running, fetching, or just hanging out — on top of the regular care every boarder receives.',
+      'A caretaker spends dedicated one-on-one time with your dog — running, fetching, or just hanging out — on top of the regular care every boarder receives.',
   },
   {
     question: 'How far in advance should I book?',
@@ -73,6 +33,29 @@ const faqs = [
     question: 'What vaccinations do you require?',
     answer:
       'We ask for current rabies, distemper/parvo (DHPP), and Bordetella. Bring records at drop-off, or have your vet email them ahead.',
+  },
+  {
+    question: 'What should I bring at drop-off?',
+    answer:
+      "Your dog's regular food (we'll measure portions per your instructions), any medications with clear dosing notes, vaccination records, an emergency vet contact, and a favorite blanket or toy if it helps them settle.",
+  },
+];
+
+const testimonials = [
+  {
+    quote: '[TESTIMONIAL_1]',
+    author: '[TESTIMONIAL_1_AUTHOR]',
+    location: '[TESTIMONIAL_1_LOCATION]',
+  },
+  {
+    quote: '[TESTIMONIAL_2]',
+    author: '[TESTIMONIAL_2_AUTHOR]',
+    location: '[TESTIMONIAL_2_LOCATION]',
+  },
+  {
+    quote: '[TESTIMONIAL_3]',
+    author: '[TESTIMONIAL_3_AUTHOR]',
+    location: '[TESTIMONIAL_3_LOCATION]',
   },
 ];
 
@@ -103,18 +86,18 @@ export default function HomePage() {
                 Boarding, grooming, and playtime in Dunlap, Tennessee. Run by
                 Tess Boring, who&apos;s spent a lifetime caring for dogs.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <Link
-                  href="/contact"
+                  href="/contact/"
                   className="inline-flex items-center justify-center rounded-xl bg-terracotta px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-terracotta/90 hover:shadow-md"
                 >
-                  Get in touch
+                  Book your dog&apos;s stay
                 </Link>
                 <Link
-                  href="/about"
-                  className="inline-flex items-center justify-center rounded-xl border-2 border-sage px-6 py-3 font-semibold text-sage-dark transition-all hover:bg-sage/10"
+                  href="/about/"
+                  className="font-semibold text-sage-dark underline-offset-4 hover:underline"
                 >
-                  Meet Tess
+                  Or meet Tess →
                 </Link>
               </div>
             </div>
@@ -129,6 +112,7 @@ export default function HomePage() {
                 priority
                 rounded="rounded-3xl"
                 className="shadow-sm"
+                placeholder
               />
             </div>
           </div>
@@ -145,21 +129,40 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {services.map((service) => (
               <article
-                key={service.title}
+                key={service.slug}
                 className="flex flex-col overflow-hidden rounded-3xl bg-sage/15 shadow-sm transition-shadow hover:shadow-md"
               >
                 <SiteImage
                   src={service.image}
-                  alt={service.alt}
+                  alt={service.imageAlt}
                   width={600}
                   height={600}
                   rounded="rounded-none"
+                  aspectRatio="16 / 10"
+                  className="md:!aspect-square"
+                  placeholder
                 />
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-heading text-2xl font-bold text-ink">
                     {service.title}
                   </h3>
-                  <div className="mt-3 text-ink/80">{service.body}</div>
+                  <p className="mt-1 text-sm font-semibold text-sage-dark">
+                    {service.price}
+                    {service.priceNote && (
+                      <span className="ml-2 text-bark">
+                        · {service.priceNote}
+                      </span>
+                    )}
+                  </p>
+                  <p className="mt-3 flex-1 text-ink/80">{service.blurb}</p>
+                  {service.detail && (
+                    <Link
+                      href={service.href}
+                      className="mt-4 inline-block font-semibold text-sage-dark underline-offset-4 hover:underline"
+                    >
+                      Learn more about {service.shortTitle.toLowerCase()} →
+                    </Link>
+                  )}
                 </div>
               </article>
             ))}
@@ -168,7 +171,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-cream">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="grid gap-10 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">
@@ -209,6 +212,37 @@ export default function HomePage() {
       </section>
 
       <section className="bg-sage/10">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <h2 className="text-center font-heading text-3xl font-bold text-ink sm:text-4xl">
+            What our families say
+          </h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <figure
+                key={i}
+                className="rounded-2xl bg-cream p-6 shadow-sm sm:p-8"
+              >
+                <svg
+                  className="h-6 w-6 text-sage"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M7.17 6A4.17 4.17 0 0 0 3 10.17v3.66A4.17 4.17 0 0 0 7.17 18h.66a1 1 0 0 0 1-1v-3.66a1 1 0 0 0-1-1H6.5a.5.5 0 0 1-.5-.5v-1.84A1.17 1.17 0 0 1 7.17 9h.66a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-.66Zm9 0A4.17 4.17 0 0 0 12 10.17v3.66A4.17 4.17 0 0 0 16.17 18h.66a1 1 0 0 0 1-1v-3.66a1 1 0 0 0-1-1H15.5a.5.5 0 0 1-.5-.5v-1.84A1.17 1.17 0 0 1 16.17 9h.66a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-.66Z" />
+                </svg>
+                <blockquote className="mt-4 text-lg text-ink/90">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-4 text-sm font-semibold text-bark">
+                  — {t.author}, {t.location}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">
@@ -228,22 +262,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-cream">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <div className="rounded-3xl bg-sage px-6 py-12 text-center shadow-sm sm:px-12 sm:py-16">
+      <section className="bg-cream pb-16 sm:pb-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-sage px-6 py-12 text-center shadow-sm sm:px-12 sm:py-14">
             <h2 className="font-heading text-3xl font-bold text-cream sm:text-4xl">
               Ready to book a stay?
             </h2>
-            <p className="mt-4 text-lg text-cream/90">
-              Send us a quick note and Tess will get back to you.
+            <p className="mt-3 text-lg text-cream/90">
+              Send us a quick note and Tess will get back to you. {SLA_RESPONSE}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
               <Link
-                href="/contact"
+                href="/contact/"
                 className="inline-flex items-center justify-center rounded-xl bg-cream px-6 py-3 font-semibold text-sage-dark shadow-sm transition-all hover:bg-cream/90 hover:shadow-md"
               >
-                Contact us
+                Send an inquiry
               </Link>
+              <a
+                href={PHONE.href}
+                className="font-semibold text-cream underline-offset-4 hover:underline"
+              >
+                Or call {PHONE.display}
+              </a>
             </div>
           </div>
         </div>

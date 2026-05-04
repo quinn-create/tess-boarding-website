@@ -4,6 +4,8 @@ type PlaceholderImageProps = {
   label?: string;
   className?: string;
   rounded?: string;
+  /** Override the inline aspect-ratio (e.g. "16 / 10"). Default: width / height. */
+  aspectRatio?: string;
 };
 
 export default function PlaceholderImage({
@@ -12,11 +14,12 @@ export default function PlaceholderImage({
   label = 'Image coming soon',
   className = '',
   rounded = 'rounded-2xl',
+  aspectRatio,
 }: PlaceholderImageProps) {
   return (
     <div
       className={`relative flex w-full items-center justify-center overflow-hidden border border-bark/15 bg-cream ${rounded} ${className}`}
-      style={{ aspectRatio: `${width} / ${height}` }}
+      style={{ aspectRatio: aspectRatio ?? `${width} / ${height}` }}
       role="img"
       aria-label={label}
     >

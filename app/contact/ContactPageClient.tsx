@@ -2,18 +2,25 @@
 
 import { Suspense, useState, type FormEvent } from 'react';
 import SuccessBanner from './SuccessBanner';
+import MapPreview from '@/components/MapPreview';
+import {
+  ADDRESS,
+  EMAIL,
+  PHONE,
+  SITE_NAME,
+  SLA_RESPONSE,
+} from '@/lib/site';
 
 type ServiceValue = '' | 'Boarding' | 'Grooming' | 'Both' | 'Other / not sure';
 
 const inputClass =
   'w-full rounded-xl border border-bark/25 bg-white px-4 py-3 text-ink placeholder:text-bark/60 shadow-sm transition-colors focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/40';
 
+const requiredMark = <span className="text-terracotta" aria-hidden="true">*</span>;
+
 export default function ContactPageClient() {
   const [service, setService] = useState<ServiceValue>('');
-  const [errors, setErrors] = useState<{
-    name?: string;
-    contact?: string;
-  }>({});
+  const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
 
   const showBoardingFields = service === 'Boarding' || service === 'Both';
 
@@ -25,9 +32,7 @@ export default function ContactPageClient() {
     const email = (data.get('email') as string | null)?.trim() ?? '';
 
     const nextErrors: typeof errors = {};
-    if (!name) {
-      nextErrors.name = 'Please tell us your name.';
-    }
+    if (!name) nextErrors.name = 'Please tell us your name.';
     if (!phone && !email) {
       nextErrors.contact =
         'Please give us a phone number or email so we can reach you.';
@@ -52,7 +57,7 @@ export default function ContactPageClient() {
             </h1>
             <p className="mt-4 text-lg text-ink/80">
               Fill out the form and Tess will get back to you to confirm your
-              dog&apos;s stay. You can also call directly.
+              dog&apos;s stay. You can also call directly. {SLA_RESPONSE}
             </p>
 
             <div className="mt-8">
@@ -60,10 +65,10 @@ export default function ContactPageClient() {
                 Call us
               </p>
               <a
-                href="tel:[PHONE NUMBER]"
+                href={PHONE.href}
                 className="mt-2 inline-block font-heading text-3xl font-bold text-sage-dark underline-offset-4 hover:underline sm:text-4xl"
               >
-                [PHONE NUMBER]
+                {PHONE.display}
               </a>
             </div>
 
@@ -72,24 +77,17 @@ export default function ContactPageClient() {
                 Visit us
               </p>
               <address className="mt-2 not-italic text-ink">
-                River Ridge Pet Retreat
+                {SITE_NAME}
                 <br />
-                1315 River Ridge Rd
+                {ADDRESS.streetAddress}
                 <br />
-                Dunlap, TN 37327
+                {ADDRESS.addressLocality}, {ADDRESS.addressRegion}{' '}
+                {ADDRESS.postalCode}
               </address>
             </div>
 
-            <div className="mt-6 overflow-hidden rounded-2xl shadow-sm">
-              <iframe
-                src="https://www.google.com/maps?q=1315+River+Ridge+Rd+Dunlap+TN+37327&output=embed"
-                width="100%"
-                height={300}
-                style={{ border: 0, borderRadius: '1rem' }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Map to River Ridge Pet Retreat"
-              />
+            <div className="mt-6">
+              <MapPreview />
             </div>
           </div>
 
@@ -113,7 +111,7 @@ export default function ContactPageClient() {
               <input
                 type="hidden"
                 name="subject"
-                value="New inquiry from River Ridge Pet Retreat website"
+                value={`New inquiry from ${SITE_NAME} website`}
               />
               <input
                 type="hidden"
@@ -129,19 +127,38 @@ export default function ContactPageClient() {
                 autoComplete="off"
               />
 
-              <div className="space-y-5">
+              <p className="text-sm text-bark">
+                Fields marked {requiredMark} are required.
+              </p>
+
+              <div
+                role="alert"
+                aria-live="polite"
+                aria-atomic="true"
+                className="empty:hidden"
+              >
+                {(errors.name || errors.contact) && (
+                  <div className="mt-4 rounded-xl bg-terracotta/15 p-3 text-sm font-semibold text-terracotta">
+                    {errors.name && <p>{errors.name}</p>}
+                    {errors.contact && <p>{errors.contact}</p>}
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-5 space-y-5">
                 <div>
                   <label
                     htmlFor="name"
                     className="block text-sm font-semibold text-ink"
                   >
-                    Name
+                    Name {requiredMark}
                   </label>
                   <input
                     id="name"
                     name="name"
                     type="text"
                     required
+                    autoComplete="name"
                     className={`mt-2 ${inputClass}`}
                     aria-invalid={Boolean(errors.name)}
                     aria-describedby={errors.name ? 'name-error' : undefined}
@@ -167,6 +184,7 @@ export default function ContactPageClient() {
                     id="phone"
                     name="phone"
                     type="tel"
+                    autoComplete="tel"
                     className={`mt-2 ${inputClass}`}
                   />
                 </div>
@@ -182,6 +200,7 @@ export default function ContactPageClient() {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     className={`mt-2 ${inputClass}`}
                     aria-describedby="contact-helper"
                   />
@@ -189,19 +208,50 @@ export default function ContactPageClient() {
                     Phone or email — whichever you prefer. Just give us at
                     least one.
                   </p>
-                  {errors.contact && (
-                    <p className="mt-1 text-sm font-semibold text-terracotta">
-                      {errors.contact}
-                    </p>
-                  )}
                 </div>
+
+                <fieldset>
+                  <legend className="text-sm font-semibold text-ink">
+                    Best way to reach you
+                  </legend>
+                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-ink">
+                    <label className="inline-flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="preferred_contact"
+                        value="Phone"
+                        defaultChecked
+                        className="text-sage focus:ring-sage"
+                      />
+                      Phone
+                    </label>
+                    <label className="inline-flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="preferred_contact"
+                        value="Email"
+                        className="text-sage focus:ring-sage"
+                      />
+                      Email
+                    </label>
+                    <label className="inline-flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="preferred_contact"
+                        value="Either"
+                        className="text-sage focus:ring-sage"
+                      />
+                      Either
+                    </label>
+                  </div>
+                </fieldset>
 
                 <div>
                   <label
                     htmlFor="service"
                     className="block text-sm font-semibold text-ink"
                   >
-                    What are you interested in?
+                    What are you interested in? {requiredMark}
                   </label>
                   <select
                     id="service"
@@ -223,44 +273,76 @@ export default function ContactPageClient() {
 
                 {showBoardingFields && (
                   <>
-                    <div>
-                      <label
-                        htmlFor="number_of_dogs"
-                        className="block text-sm font-semibold text-ink"
-                      >
-                        Number of dogs
-                      </label>
-                      <input
-                        id="number_of_dogs"
-                        name="number_of_dogs"
-                        type="number"
-                        min={1}
-                        defaultValue={1}
-                        className={`mt-2 ${inputClass}`}
-                      />
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="drop_off_date"
+                          className="block text-sm font-semibold text-ink"
+                        >
+                          Drop-off date
+                        </label>
+                        <input
+                          id="drop_off_date"
+                          name="drop_off_date"
+                          type="date"
+                          className={`mt-2 ${inputClass}`}
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="pick_up_date"
+                          className="block text-sm font-semibold text-ink"
+                        >
+                          Pick-up date
+                        </label>
+                        <input
+                          id="pick_up_date"
+                          name="pick_up_date"
+                          type="date"
+                          className={`mt-2 ${inputClass}`}
+                        />
+                      </div>
                     </div>
 
-                    <div>
-                      <label
-                        htmlFor="number_of_runs"
-                        className="block text-sm font-semibold text-ink"
-                      >
-                        Number of separate runs/kennels
-                      </label>
-                      <input
-                        id="number_of_runs"
-                        name="number_of_runs"
-                        type="number"
-                        min={1}
-                        defaultValue={1}
-                        className={`mt-2 ${inputClass}`}
-                        aria-describedby="runs-helper"
-                      />
-                      <p id="runs-helper" className="mt-2 text-sm text-bark">
-                        Dogs from the same household can share a run for a
-                        reduced rate.
-                      </p>
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="number_of_dogs"
+                          className="block text-sm font-semibold text-ink"
+                        >
+                          Number of dogs
+                        </label>
+                        <input
+                          id="number_of_dogs"
+                          name="number_of_dogs"
+                          type="number"
+                          min={1}
+                          defaultValue={1}
+                          className={`mt-2 ${inputClass}`}
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="number_of_runs"
+                          className="block text-sm font-semibold text-ink"
+                        >
+                          Separate runs/kennels
+                        </label>
+                        <input
+                          id="number_of_runs"
+                          name="number_of_runs"
+                          type="number"
+                          min={1}
+                          defaultValue={1}
+                          className={`mt-2 ${inputClass}`}
+                          aria-describedby="runs-helper"
+                        />
+                      </div>
                     </div>
+                    <p id="runs-helper" className="-mt-3 text-sm text-bark">
+                      Dogs from the same household can share a run for a
+                      reduced rate.
+                    </p>
                   </>
                 )}
 
@@ -279,12 +361,27 @@ export default function ContactPageClient() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-terracotta px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-terracotta/90 hover:shadow-md sm:w-auto"
-                >
-                  Send inquiry
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full rounded-xl bg-terracotta px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-terracotta/90 hover:shadow-md sm:w-auto"
+                  >
+                    Send inquiry
+                  </button>
+                  <p className="mt-3 text-sm text-bark">
+                    Form not working? Email us directly:{' '}
+                    <a
+                      href={EMAIL.href}
+                      className="font-semibold text-sage-dark underline-offset-4 hover:underline"
+                    >
+                      {EMAIL.display}
+                    </a>
+                  </p>
+                  <p className="mt-2 text-xs text-bark">
+                    We use the info you provide only to respond to your
+                    inquiry.
+                  </p>
+                </div>
               </div>
             </form>
           </div>
