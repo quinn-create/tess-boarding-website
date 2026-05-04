@@ -245,19 +245,35 @@ export default function HomePage() {
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">
-              Frequently asked questions
-            </h2>
-            <dl className="mt-10 space-y-8">
-              {faqs.map((f) => (
-                <div key={f.question}>
-                  <dt className="font-heading text-xl font-bold text-ink">
-                    {f.question}
-                  </dt>
-                  <dd className="mt-2 text-lg text-ink/80">{f.answer}</dd>
-                </div>
-              ))}
-            </dl>
+            <details className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl py-2 transition-colors hover:text-sage-dark [&::-webkit-details-marker]:hidden">
+                <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">
+                  Frequently asked questions
+                </h2>
+                <svg
+                  className="h-8 w-8 shrink-0 text-sage-dark transition-transform group-open:rotate-180"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl className="mt-10 space-y-8">
+                {faqs.map((f) => (
+                  <div key={f.question}>
+                    <dt className="font-heading text-xl font-bold text-ink">
+                      {f.question}
+                    </dt>
+                    <dd className="mt-2 text-lg text-ink/80">{f.answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </details>
           </div>
         </div>
       </section>
